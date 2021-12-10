@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class MovePanel : MonoBehaviour
 {
+    [Header("Childs")]
     public Image circle;
     public Image finger;
+
+    [Header("Out")]
+    public Vector2 direction = new Vector2();
     
     private Vector2 defPos;
     
-    void Start()
-    {
-    }
-
     private void OnEnable()
     {
         defPos = circle.transform.position;
-        Debug.Log("DEFAULT " + defPos);
+        // Debug.Log("DEFAULT " + defPos);
     }
 
     // Update is called once per frame
@@ -45,19 +45,21 @@ public class MovePanel : MonoBehaviour
                 finger.transform.position = new Vector3(point.x, point.y, 0) + circle.transform.position;
             }
         }
-        else
+        else if(Input.GetMouseButtonUp(0))
         {
             circle.transform.position = defPos;
             finger.transform.position = circle.transform.position;
         }
 
-        Vector2 direction = finger.transform.position - circle.transform.position;
-        var radius = circle.rectTransform.sizeDelta.x / 2;
-        Vector2 normalized = direction.normalized;
-        if (direction.magnitude > radius)
-        {
-            finger.transform.position = normalized * radius;
-            finger.transform.position += circle.transform.position;
-        }
+        // Vector2 diff = finger.transform.position - circle.transform.position;
+        // var radius = circle.rectTransform.sizeDelta.x / 2;
+        // Vector2 normalized = diff.normalized;
+        // this.direction = diff / radius;
+        // if (diff.magnitude > radius)
+        // {
+        //     this.direction = normalized;
+        //     finger.transform.position = this.direction * radius;
+        //     finger.transform.position += circle.transform.position;
+        // }
     }
 }

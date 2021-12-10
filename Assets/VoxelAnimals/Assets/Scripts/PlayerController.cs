@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float movementSpeed = 3;
+    [Header("Config")] public float movementSpeed = 3;
     public float jumpForce = 300;
     public float timeBeforeNextJump = 1.2f;
+
     private float canJump = 0f;
     Animator anim;
     Rigidbody rb;
-    
+
+    private MovePanel movePanel;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        movePanel = FindObjectOfType<MovePanel>();
     }
 
     void Update()
@@ -28,14 +31,17 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        // Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        var movement = new Vector3(movePanel.direction.x, 0, movePanel.direction.y);
+        // Debug.Log("MOVE " + movement);
 
         if (movement != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
             anim.SetInteger("Walk", 1);
         }
-        else {
+        else
+        {
             anim.SetInteger("Walk", 0);
         }
 
@@ -43,9 +49,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && Time.time > canJump)
         {
-                rb.AddForce(0, jumpForce, 0);
-                canJump = Time.time + timeBeforeNextJump;
-                anim.SetTrigger("jump");
+            rb.AddForce(0, jumpForce, 0);
+            canJump = Time.time + timeBeforeNextJump;
+            anim.SetTrigger("jump");
         }
     }
 }
