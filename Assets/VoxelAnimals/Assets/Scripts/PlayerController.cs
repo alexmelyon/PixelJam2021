@@ -45,13 +45,21 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("Walk", 0);
         }
 
-        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        // transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        rb.velocity = movement * movementSpeed;
 
         if (Input.GetButtonDown("Jump") && Time.time > canJump)
         {
             rb.AddForce(0, jumpForce, 0);
             canJump = Time.time + timeBeforeNextJump;
             anim.SetTrigger("jump");
+        }
+
+        if (transform.position.y < 0)
+        {
+            var t = transform.position;
+            t.y = 0;
+            transform.position = t;
         }
     }
 }
