@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MovePanel : MonoBehaviour
 {
+    public Camera camera;
+    
     [Header("Childs")]
     public Image circle;
     public Image finger;
@@ -18,7 +20,10 @@ public class MovePanel : MonoBehaviour
     private void OnEnable()
     {
         defPos = circle.transform.position;
-        // Debug.Log("DEFAULT " + defPos);
+        if (camera != null)
+        {
+            camera = Camera.main;
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +33,7 @@ public class MovePanel : MonoBehaviour
         {
             var rect = (RectTransform) transform;
             Vector2 point;
-            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, Camera.current, out point);
+            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, camera, out point);
             if (res)
             {
                 // Debug.Log("POINT " + point);
@@ -39,7 +44,7 @@ public class MovePanel : MonoBehaviour
         {
             var rect = circle.rectTransform;
             Vector2 point;
-            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, Camera.current, out point);
+            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, camera, out point);
             if (res)
             {
                 finger.transform.position = new Vector3(point.x, point.y, 0) + circle.transform.position;
@@ -51,15 +56,14 @@ public class MovePanel : MonoBehaviour
             finger.transform.position = circle.transform.position;
         }
 
-        // Vector2 diff = finger.transform.position - circle.transform.position;
-        // var radius = circle.rectTransform.sizeDelta.x / 2;
-        // Vector2 normalized = diff.normalized;
-        // this.direction = diff / radius;
-        // if (diff.magnitude > radius)
-        // {
-        //     this.direction = normalized;
-        //     finger.transform.position = this.direction * radius;
-        //     finger.transform.position += circle.transform.position;
-        // }
+        Vector2 diff = finger.transform.position - circle.transform.position;
+        var radius = circle.rectTransform.sizeDelta.x / 2;
+        this.direction = diff / radius;
+        if (diff.magnitude > radius)
+        {
+            this.direction = diff.normalized;
+            finger.transform.position = this.direction * radius;
+            finger.transform.position += circle.transform.position;
+        }
     }
 }
