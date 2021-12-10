@@ -4,29 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// + MovePanel
+///   + Out circle image
+///     + Finger circle image
+/// </summary>
 public class MovePanel : MonoBehaviour
 {
-    public Camera camera;
 
     [Header("Childs")] public Image circle;
     public Image finger;
 
-    [Header("Out")] public Vector2 direction = new Vector2();
+    [Header("Out")] 
+    public Vector2 direction = new Vector2();
 
     private Vector2 defPos;
 
-    private void OnEnable()
+    private void Start()
     {
         defPos = circle.transform.position;
-        if (camera != null)
-        {
-            camera = Camera.main;
-        }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Camera _camera = null;
+    
         bool isButtonDown = Input.GetMouseButtonDown(0) || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began;
         bool isButtonHold = Input.GetMouseButton(0) || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved;
         bool isButtonUp = Input.GetMouseButtonUp(0) || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended;
@@ -44,10 +46,9 @@ public class MovePanel : MonoBehaviour
         {
             var rect = (RectTransform) transform;
             Vector2 point;
-            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, inputPos, camera, out point);
+            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, inputPos, _camera, out point);
             if (res)
             {
-                // Debug.Log("POINT " + point);
                 circle.transform.position = point + defPos;
             }
         }
@@ -55,7 +56,7 @@ public class MovePanel : MonoBehaviour
         {
             var rect = circle.rectTransform;
             Vector2 point;
-            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, inputPos, camera, out point);
+            bool res = RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, inputPos, _camera, out point);
             if (res)
             {
                 finger.transform.position = new Vector3(point.x, point.y, 0) + circle.transform.position;
@@ -63,7 +64,6 @@ public class MovePanel : MonoBehaviour
         }
         else if (isButtonUp)
         {
-            // circle.transform.position = defPos;
             finger.transform.position = circle.transform.position;
         }
 

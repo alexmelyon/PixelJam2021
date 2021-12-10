@@ -14,7 +14,6 @@ public class Sheep : MonoBehaviour
 
     public float walkDistance = 5F;
 
-    // private Behavior state = Behavior.RANDOM_WALKING;
     private Behavior _state;
     private NavMeshAgent agent;
     private Dog dog;
@@ -35,7 +34,6 @@ public class Sheep : MonoBehaviour
         while (_state == Behavior.RANDOM_WALKING)
         {
             yield return new WaitForSeconds(5F);
-            Debug.Log("WALK " + gameObject.name);
             Vector3 newPos = new Vector3(Random.value * walkDistance, 0, Random.value * walkDistance) + agent.transform.position;
             agent.Warp(agent.transform.position);
             agent.SetDestination(newPos);
@@ -48,6 +46,7 @@ public class Sheep : MonoBehaviour
         {
             var diff = transform.position - dog.transform.position;
             var dest = transform.position + diff;
+            agent.Warp(agent.transform.position);
             agent.SetDestination(dest);
             
             yield return null;
@@ -56,26 +55,23 @@ public class Sheep : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ENTER " + other.gameObject.name);
         if (other.GetComponent<ZoneInfluence>() != null)
         {
-            Debug.Log("ENTER ZONE " + other.gameObject.name);
             SetState(Behavior.RUN_FROM_DOG);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("EXIT " + other.gameObject.name);
         if (other.GetComponent<ZoneInfluence>() != null)
         {
-            Debug.Log("EXIT ZONE " + other.gameObject.name);
             SetState(Behavior.RANDOM_WALKING);
         }
     }
 
     void SetState(Behavior next)
     {
+        Debug.Log(gameObject.name + " " + next);
         _state = next;
         switch (next)
         {
