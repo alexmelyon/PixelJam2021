@@ -16,12 +16,7 @@ public class Dog : MonoBehaviour
     {
         movePanel = FindObjectOfType<MovePanel>();
     }
-
-    void Start()
-    {
-        
-    }
-
+    
     void Update()
     {
         float radius = Mathf.Lerp(minInfluenceRadius, maxInfluenceRadius, movePanel.direction.magnitude);

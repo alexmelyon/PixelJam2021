@@ -17,5 +17,6 @@ public class GatesTrigger : MonoBehaviour
         {
             onEnter.Invoke();
         }
+        // TODO Check all sheep in the aviary
     }
 }
