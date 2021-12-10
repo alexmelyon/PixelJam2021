@@ -12,11 +12,6 @@ public class CameraContainer : MonoBehaviour
         dog = FindObjectOfType<PlayerController>();
     }
 
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
