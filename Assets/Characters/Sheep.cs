@@ -13,6 +13,7 @@ public class Sheep : MonoBehaviour
     }
 
     public float walkDistance = 5F;
+    public float runDistance = 10F;
 
     private Behavior _state;
     private NavMeshAgent agent;
@@ -44,10 +45,14 @@ public class Sheep : MonoBehaviour
     {
         while (_state == Behavior.RUN_FROM_DOG)
         {
-            var diff = transform.position - dog.transform.position;
+            var diff = (transform.position - dog.transform.position).normalized * runDistance;
             var dest = transform.position + diff;
             agent.Warp(agent.transform.position);
             agent.SetDestination(dest);
+            while ((dest - agent.transform.position).magnitude > 1F)
+            {
+                yield return new WaitForSeconds(1F);
+            }
             
             yield return null;
         }
@@ -63,10 +68,10 @@ public class Sheep : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<ZoneInfluence>() != null)
-        {
-            SetState(Behavior.RANDOM_WALKING);
-        }
+        // if (other.GetComponent<ZoneInfluence>() != null)
+        // {
+        //     SetState(Behavior.RANDOM_WALKING);
+        // }
     }
 
     void SetState(Behavior next)
