@@ -7,7 +7,8 @@ using UnityEngine.Events;
 
 public class GatesTrigger : MonoBehaviour
 {
-    public Sheep[] sheeps;
+    // public Sheep[] sheeps;
+    public int maxSheepCount = 1;
     
     public UnityEvent onCloseGates;
     public UnityEvent<int> onCountChanged;
@@ -23,7 +24,7 @@ public class GatesTrigger : MonoBehaviour
         onCountChanged.Invoke(sheepsCount);
         Debug.Log("SHEEP ENTER " + sheepsCount);
 
-        if (sheepsCount == sheeps.Length)
+        if (sheepsCount == maxSheepCount)
         {
             onCloseGates.Invoke();
         }
@@ -31,7 +32,7 @@ public class GatesTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.GetComponent<Sheep>() == null)
+        if(!isThisMySheep(other))
             return;
 
         sheepsCount--;
@@ -45,8 +46,8 @@ public class GatesTrigger : MonoBehaviour
         if(other.GetComponent<Sheep>() == null)
             return false;
 
-        if(!sheeps.Select(it => it.gameObject).Contains(other.gameObject))
-            return false;
+        // if(!sheeps.Select(it => it.gameObject).Contains(other.gameObject))
+        //     return false;
 
         return true;
     }

@@ -76,7 +76,7 @@ public class Sheep : MonoBehaviour
 
     void SetState(Behavior next)
     {
-        Debug.Log(gameObject.name + " " + next);
+        // Debug.Log(gameObject.name + " " + next);
         _state = next;
         switch (next)
         {
