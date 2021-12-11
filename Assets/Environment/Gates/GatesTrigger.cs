@@ -7,16 +7,47 @@ using UnityEngine.Events;
 
 public class GatesTrigger : MonoBehaviour
 {
-    public GameObject[] possibleObjects;
+    public Sheep[] sheeps;
     
-    public UnityEvent onEnter;
+    public UnityEvent onCloseGates;
+    public UnityEvent<int> onCountChanged;
 
+    private int sheepsCount = 0;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (possibleObjects.Contains(other.gameObject))
+        if(!isThisMySheep(other))
+            return;
+        
+        sheepsCount++;
+        onCountChanged.Invoke(sheepsCount);
+        Debug.Log("SHEEP ENTER " + sheepsCount);
+
+        if (sheepsCount == sheeps.Length)
         {
-            onEnter.Invoke();
+            onCloseGates.Invoke();
         }
-        // TODO Check all sheep in the aviary
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.GetComponent<Sheep>() == null)
+            return;
+
+        sheepsCount--;
+        onCountChanged.Invoke(sheepsCount);
+        
+        Debug.Log("SHEEP EXIT " + sheepsCount);
+    }
+
+    private bool isThisMySheep(Collider other)
+    {
+        if(other.GetComponent<Sheep>() == null)
+            return false;
+
+        if(!sheeps.Select(it => it.gameObject).Contains(other.gameObject))
+            return false;
+
+        return true;
     }
 }
