@@ -235,7 +235,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5025744395880674952}
-  - component: {fileID: 1717630937}
   - component: {fileID: 73929037895666271}
   m_Layer: 0
   m_Name: Gates 1
@@ -260,22 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1717630937
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5025744395880674953}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: ecf517e4f8f1d194e9b86dd5f671f1d0, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: ecf517e4f8f1d194e9b86dd5f671f1d0, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &73929037895666271
 MonoBehaviour:
   m_ObjectHideFlags: 0

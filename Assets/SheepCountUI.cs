@@ -21,9 +21,17 @@ public class SheepCountUI : MonoBehaviour
 
     public void ResetSheepCount()
     {
+        StartCoroutine(PrivateReset());
+    }
+
+    IEnumerator PrivateReset()
+    {
+        yield return new WaitForSeconds(1F);
         sheepCount = 0;
         UpdateText();
+        yield return null;
     }
+    
 
     public void PlusSheep()
     {

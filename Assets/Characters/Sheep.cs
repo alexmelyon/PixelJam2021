@@ -34,8 +34,11 @@ public class Sheep : MonoBehaviour
     {
         while (_state == Behavior.RANDOM_WALKING)
         {
-            yield return new WaitForSeconds(5F);
-            Vector3 newPos = new Vector3(Random.value * walkDistance, 0, Random.value * walkDistance) + agent.transform.position;
+            float seconds = Random.value * 5F + 2;
+            yield return new WaitForSeconds(seconds);
+            float x = Random.value * 2 - 1;
+            float z = Random.value * 2 - 1;
+            Vector3 newPos = new Vector3(x * walkDistance, 0, z * walkDistance) + agent.transform.position;
             agent.Warp(agent.transform.position);
             agent.SetDestination(newPos);
         }

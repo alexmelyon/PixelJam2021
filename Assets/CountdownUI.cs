@@ -7,9 +7,6 @@ public class CountdownUI : MonoBehaviour
 {
     [Header("Objects")]
     public WinPanel winPanel;
-
-    [Header("Components")]
-    public Text text;
     
     private int secondsLeft = -1;
     
@@ -25,18 +22,22 @@ public class CountdownUI : MonoBehaviour
 
     IEnumerator OneSecond()
     {
-        secondsLeft--;
-        UpdateText();
-        if (secondsLeft == 0)
+        while (true)
         {
-            winPanel.ShowFailPanel();
-            yield break;
+            secondsLeft--;
+            UpdateText();
+            if (secondsLeft == 0)
+            {
+                winPanel.ShowFailPanel();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(1F);
         }
-        yield return new WaitForSeconds(1F);
     }
 
     void UpdateText()
     {
-        text.text = "" + secondsLeft;
+        GetComponent<Text>().text = "" + secondsLeft;
     }
 }
