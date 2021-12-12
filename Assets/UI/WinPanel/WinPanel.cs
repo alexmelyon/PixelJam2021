@@ -56,7 +56,7 @@ public class WinPanel : MonoBehaviour
                 l.sheepTransform[j] = l.sheep[j].transform.position;
             }
         }
-        StartLevel(4);
+        StartLevel(0);
         Debug.Log("LEVEL 0: " + level);
     }
 
@@ -103,7 +103,7 @@ public class WinPanel : MonoBehaviour
 
     void StartLevel(int num)
     {
-        if (num > levels.Length)
+        if (num >= levels.Length)
         {
             num = 0;
         }
