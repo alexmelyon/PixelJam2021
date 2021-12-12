@@ -7,21 +7,27 @@ using UnityEngine.Events;
 
 public class GatesTrigger : MonoBehaviour
 {
-    // public Sheep[] sheeps;
     public int maxSheepCount = 1;
     
     public UnityEvent onCloseGates;
-    public UnityEvent<int> onCountChanged;
-
-    private int sheepsCount = 0;
+    // public UnityEvent<int> onCountChanged;
     
+    private int sheepsCount = 0;
+    private SheepCountUI SheepCountUI;
+
+    private void Awake()
+    {
+        SheepCountUI = FindObjectOfType<SheepCountUI>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(!isThisMySheep(other))
             return;
         
         sheepsCount++;
-        onCountChanged.Invoke(sheepsCount);
+        // onCountChanged.Invoke(sheepsCount);
+        SheepCountUI.PlusSheep();
         Debug.Log("SHEEP ENTER " + sheepsCount);
 
         if (sheepsCount == maxSheepCount)
@@ -36,7 +42,8 @@ public class GatesTrigger : MonoBehaviour
             return;
 
         sheepsCount--;
-        onCountChanged.Invoke(sheepsCount);
+        // onCountChanged.Invoke(sheepsCount);
+        SheepCountUI.MinusSheep();
         
         Debug.Log("SHEEP EXIT " + sheepsCount);
     }

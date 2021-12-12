@@ -182,18 +182,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaa2a8a193dec1468424f99e573d004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sheepCount: {fileID: 0}
+  countdown: {fileID: 0}
   panel: {fileID: 1475993504110655540}
+  nextButton: {fileID: 1475993503867079401}
   levels:
   - start: {fileID: 0}
+    sheepCount: 1
     gatesCount: 1
+    seconds: -1
   - start: {fileID: 0}
+    sheepCount: 2
     gatesCount: 1
+    seconds: -1
   - start: {fileID: 0}
+    sheepCount: 2
     gatesCount: 2
+    seconds: -1
   - start: {fileID: 0}
+    sheepCount: 2
     gatesCount: 2
+    seconds: 60
   - start: {fileID: 0}
+    sheepCount: 10
     gatesCount: 1
+    seconds: 60
 --- !u!1 &1475993504110655540
 GameObject:
   m_ObjectHideFlags: 0

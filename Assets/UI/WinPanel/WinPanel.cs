@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinPanel : MonoBehaviour
 {
@@ -10,13 +10,20 @@ public class WinPanel : MonoBehaviour
     public class Level
     {
         public Transform start;
+        public int sheepCount = 1;
         public int gatesCount = 1;
+        public int seconds = 60;
 
         internal int gatesClosed = 0;
     }
+
+    [Header("Objects")]
+    public SheepCountUI sheepCount;
+    public CountdownUI countdown;
     
     [Header("Childs")]
     public GameObject panel;
+    public Button nextButton;
     
     [Header("Settings")]
     public Level[] levels;
@@ -29,6 +36,10 @@ public class WinPanel : MonoBehaviour
     {
         panel = transform.GetChild(0).gameObject;
         dog = FindObjectOfType<Dog>();
+    }
+
+    private void Start()
+    {
         StartLevel(0);
         Debug.Log("LEVEL 0: " + level);
     }
@@ -47,10 +58,13 @@ public class WinPanel : MonoBehaviour
     {
         Debug.Log("SHOW WIN PANEL");
         panel.gameObject.SetActive(true);
+        sheepCount.gameObject.SetActive(false);
+        countdown.gameObject.SetActive(false);
     }
 
     public void ShowFailPanel()
     {
+        
         panel.gameObject.SetActive(true);
     }
     
@@ -75,7 +89,28 @@ public class WinPanel : MonoBehaviour
         var nextStart = next.start;
         var nextPos = nextStart.position; 
         dog.transform.position = nextPos;
-        
+        sheepCount.ResetSheepCount();
+        sheepCount.maxSheepCount = level.sheepCount;
+        StartCoroutine(StartLevelAnimations());
+
         Debug.Log("STARTED LEVEL " + num);
+    }
+
+    IEnumerator StartLevelAnimations()
+    {
+        sheepCount.gameObject.SetActive(true);
+        sheepCount.GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(0.5F);
+        
+        countdown.gameObject.SetActive(false);
+        if (level.seconds > 0)
+        {
+            countdown.gameObject.SetActive(true);
+            countdown.GetComponent<Animation>().Play();
+            yield return new WaitForSeconds(0.5F);
+            countdown.SetSeconds(level.seconds);
+        }
+
+        yield return null;
     }
 }
