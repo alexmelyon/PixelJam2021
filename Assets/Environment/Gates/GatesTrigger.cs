@@ -12,7 +12,8 @@ public class GatesTrigger : MonoBehaviour
     public UnityEvent onCloseGates;
     // public UnityEvent<int> onCountChanged;
     
-    private int sheepsCount = 0;
+    [HideInInspector]
+    public int sheepsCount = 0;
     private SheepCountUI SheepCountUI;
 
     private void Awake()
@@ -30,7 +31,7 @@ public class GatesTrigger : MonoBehaviour
         SheepCountUI.PlusSheep();
         Debug.Log("SHEEP ENTER " + sheepsCount);
 
-        if (sheepsCount == maxSheepCount)
+        if (sheepsCount >= maxSheepCount)
         {
             onCloseGates.Invoke();
         }

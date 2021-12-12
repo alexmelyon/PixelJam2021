@@ -13,6 +13,7 @@ public class WinPanel : MonoBehaviour
         public Transform start;
         public int sheepCount = 1;
         // public int gatesCount = 1;
+        public GatesTrigger[] triggers;
         public Gates[] gates;
         public Sheep[] sheep;
         public int seconds = 60;
@@ -123,6 +124,10 @@ public class WinPanel : MonoBehaviour
             s.GetComponent<NavMeshAgent>().SetDestination(s.transform.position);
             s.GetComponent<Rigidbody>().velocity = new Vector3();
             s.GetComponent<Rigidbody>().angularVelocity = new Vector3();
+        }
+        foreach (var t in level.triggers)
+        {
+            t.sheepsCount = 0;
         }
         sheepCountUI.ResetSheepCount();
         sheepCountUI.maxSheepCount = level.sheepCount;
