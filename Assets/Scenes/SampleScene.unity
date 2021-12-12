@@ -42635,14 +42635,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 552902625}
     m_Modifications:
-    - target: {fileID: 1367151014, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
-      propertyPath: m_Carve
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420717785, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
-      propertyPath: m_Carve
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5025744395880674952, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -42693,17 +42685,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
---- !u!1 &1717630936 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5025744395880674953, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
-  m_PrefabInstance: {fileID: 1717630935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1717630937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 73929037895666271, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
   m_PrefabInstance: {fileID: 1717630935}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717630936}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35a3c951f2aebd842be167922011710f, type: 3}
@@ -42714,25 +42701,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5025744395880674952, guid: e7abc56a8e431be4fbefb49187f2e874, type: 3}
   m_PrefabInstance: {fileID: 1717630935}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1717630939
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717630936}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: abeafb8f27b405a41ba0709ebc5313c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1718324420
 PrefabInstance:
   m_ObjectHideFlags: 0

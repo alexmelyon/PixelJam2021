@@ -109,7 +109,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.86300004, y: 0.55, z: 0.095000006}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.55, z: 0.015000001}
   m_TimeToStationary: 0.5
@@ -222,7 +222,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.86300004, y: 0.55, z: 0.095000006}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.55, z: 0.015000001}
   m_TimeToStationary: 0.5
@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5025744395880674952}
   - component: {fileID: 73929037895666271}
+  - component: {fileID: 8299146480912202909}
   m_Layer: 0
   m_Name: Gates 1
   m_TagString: Untagged
@@ -271,3 +272,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a3c951f2aebd842be167922011710f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &8299146480912202909
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025744395880674953}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ecf517e4f8f1d194e9b86dd5f671f1d0, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

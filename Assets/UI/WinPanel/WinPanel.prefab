@@ -186,9 +186,11 @@ MonoBehaviour:
   countdownUI: {fileID: 0}
   panel: {fileID: 1475993504110655540}
   nextButton: {fileID: 1475993503867079401}
+  title: {fileID: 1475993504482964896}
   levels:
   - start: {fileID: 0}
     sheepCount: 1
+    triggers: []
     gates:
     - {fileID: 0}
     sheep:
@@ -196,6 +198,7 @@ MonoBehaviour:
     seconds: -1
   - start: {fileID: 0}
     sheepCount: 2
+    triggers: []
     gates:
     - {fileID: 0}
     sheep:
@@ -204,6 +207,7 @@ MonoBehaviour:
     seconds: -1
   - start: {fileID: 0}
     sheepCount: 2
+    triggers: []
     gates:
     - {fileID: 0}
     - {fileID: 0}
@@ -213,6 +217,7 @@ MonoBehaviour:
     seconds: -1
   - start: {fileID: 0}
     sheepCount: 2
+    triggers: []
     gates:
     - {fileID: 0}
     - {fileID: 0}
@@ -222,6 +227,7 @@ MonoBehaviour:
     seconds: 60
   - start: {fileID: 0}
     sheepCount: 10
+    triggers: []
     gates:
     - {fileID: 0}
     sheep:
@@ -235,7 +241,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    seconds: 60
+    seconds: 120
 --- !u!1 &1475993504110655540
 GameObject:
   m_ObjectHideFlags: 0

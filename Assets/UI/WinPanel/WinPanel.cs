@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WinPanel : MonoBehaviour
@@ -29,6 +30,7 @@ public class WinPanel : MonoBehaviour
     [Header("Childs")]
     public GameObject panel;
     public Button nextButton;
+    public Text title;
     
     [Header("Settings")]
     public Level[] levels;
@@ -54,7 +56,7 @@ public class WinPanel : MonoBehaviour
                 l.sheepTransform[j] = l.sheep[j].transform.position;
             }
         }
-        StartLevel(0);
+        StartLevel(4);
         Debug.Log("LEVEL 0: " + level);
     }
 
@@ -71,7 +73,7 @@ public class WinPanel : MonoBehaviour
     void ShowWinPanel()
     {
         Debug.Log("SHOW WIN PANEL");
-        nextButton.transform.GetChild(0).GetComponent<Text>().text = "Победа";
+        // nextButton.transform.GetChild(0).GetComponent<Text>().text = "Победа";
         nextButton.gameObject.SetActive(true);
         
         panel.gameObject.SetActive(true);
@@ -81,7 +83,7 @@ public class WinPanel : MonoBehaviour
 
     public void ShowFailPanel()
     {
-        nextButton.transform.GetChild(0).GetComponent<Text>().text = "Поражение";
+        // nextButton.transform.GetChild(0).GetComponent<Text>().text = "Поражение";
         nextButton.gameObject.SetActive(false);
         
         panel.gameObject.SetActive(true);
@@ -95,7 +97,8 @@ public class WinPanel : MonoBehaviour
 
     public void RepeatLevel()
     {
-        StartLevel(currentLevel);
+        // StartLevel(currentLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void StartLevel(int num)
